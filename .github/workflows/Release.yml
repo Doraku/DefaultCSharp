@@ -33,14 +33,14 @@ jobs:
       run: |
         type documentation\NEXT_RELEASENOTES.txt | Out-File build\RELEASE.txt
         echo "" | Out-File build\RELEASE.txt -Append
-        echo "[nuget package](https://www.nuget.org/packages/${{ github.event.repository.name }}/${{ github.event.release.tag_name }})" | Out-File build\RELEASE.txt -Append
+        echo "[nuget package](https://www.nuget.org/packages/DefaultCSharp/${{ github.event.release.tag_name }})" | Out-File build\RELEASE.txt -Append
 
     - name: Update release
       uses: tubone24/update_release@v1.1.0
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        release_name: ${{ github.event.repository.name }} ${{ github.event.release.tag_name }}
+        release_name: DefaultCSharp ${{ github.event.release.tag_name }}
         prerelease: ${{ contains(github.event.release.tag_name, '-') }}
         body_path: .\build\RELEASE.txt
         

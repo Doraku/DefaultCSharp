@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - '.github/workflows/ContinuousIntegration.yml'
-      - 'source/${{ github.event.repository.name }}/**'
+      - 'source/DefaultCSharp/**'
 
 jobs:
   continuous_integration:
