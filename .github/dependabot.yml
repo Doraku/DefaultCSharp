@@ -4,6 +4,11 @@ updates:
     directory: "/source"
     schedule:
       interval: "weekly"
+    groups:
+       Roslynator:
+          applies-to: version-updates
+          patterns:
+            - "Roslynator*"
       
   - package-ecosystem: "github-actions"
     directory: "/.github/workflows"
