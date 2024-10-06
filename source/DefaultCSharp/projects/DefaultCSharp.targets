@@ -1,0 +1,13 @@
+<Project>
+
+  <ItemGroup>
+
+    <EditorConfigFiles Include="$(MSBuildThisFileDirectory)..\configuration\*.editorconfig" />
+
+    <EditorConfigFiles
+       Condition="'$(IsTestProject)'=='true'"
+       Include="$(MSBuildThisFileDirectory)..\configuration\test\*.editorconfig" />
+
+  </ItemGroup>
+
+</Project>
