@@ -30,4 +30,4 @@ jobs:
       run: dotnet pack source -c Release -o build /p:CI_VERSION=true
 
     - name: Publish package
-      run: dotnet nuget push build\*.nupkg
+      run: nuget push build\*.nupkg
