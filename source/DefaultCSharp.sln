@@ -16,9 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{DE96
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".workflows", ".workflows", "{E8376EC9-2DB7-4760-967F-23B147818E85}"
 	ProjectSection(SolutionItems) = preProject
-		..\.github\\workflows\ContinuousIntegration.yml = ..\.github\\workflows\ContinuousIntegration.yml
+		..\.github\workflows\ContinuousIntegration.yml = ..\.github\workflows\ContinuousIntegration.yml
+		..\.github\dependabot.yml = ..\.github\dependabot.yml
 		..\Release.bat = ..\Release.bat
-		..\.github\\workflows\Release.yml = ..\.github\\workflows\Release.yml
+		..\.github\workflows\Release.yml = ..\.github\workflows\Release.yml
 	EndProjectSection
 EndProject
 Global
