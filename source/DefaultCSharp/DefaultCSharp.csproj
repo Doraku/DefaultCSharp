@@ -4,25 +4,22 @@
     
     <TargetFramework>netstandard2.0</TargetFramework>
     
-    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <Authors>Paillat Laszlo</Authors>
+    <Description>Editor configuration reusable between projects, totaly opinionated.</Description>
+    
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Doraku/DefaultCSharp</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>editorconfig</PackageTags>
+    
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Doraku/DefaultCSharp.git</RepositoryUrl>
+    
     <DevelopmentDependency>true</DevelopmentDependency>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     
-  </PropertyGroup>
-
-  <PropertyGroup Label="Package">
-    <Authors>Paillat Laszlo</Authors>
-    <AssemblyName>DefaultCSharp</AssemblyName>
-    <AssemblyTitle>DefaultCSharp</AssemblyTitle>
-    <PackageId>DefaultCSharp</PackageId>
-    <Description>Editor configuration reusable between projects, totaly opinionated.</Description>
-    <PackageIcon>logo.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/Doraku/DefaultCSharp</PackageProjectUrl>
-    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/Doraku/DefaultCSharp.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>editorconfig</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
