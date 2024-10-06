@@ -76,4 +76,6 @@
     </PropertyGroup>
   </Target>
 
+  <Import Project="$(MSBuildThisFileDirectory)projects\DefaultCSharp.props"/>
+
 </Project>

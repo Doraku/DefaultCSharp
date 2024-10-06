@@ -5,13 +5,20 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefaultCSharp", "DefaultCSharp\DefaultCSharp.csproj", "{47B2731B-C8A5-4B86-AD5F-7C90FE27C9CB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
+		..\.github\FUNDING.yml = ..\.github\FUNDING.yml
 		..\LICENSE.md = ..\LICENSE.md
 		..\documentation\NEXT_RELEASENOTES.txt = ..\documentation\NEXT_RELEASENOTES.txt
 		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".workflows", ".workflows", "{E8376EC9-2DB7-4760-967F-23B147818E85}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\\workflows\ContinuousIntegration.yml = ..\.github\\workflows\ContinuousIntegration.yml
 		..\Release.bat = ..\Release.bat
+		..\.github\\workflows\Release.yml = ..\.github\\workflows\Release.yml
 	EndProjectSection
 EndProject
 Global
