@@ -13,12 +13,15 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up dotnet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
+        source-url: https://nuget.pkg.github.com/Doraku/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
     - name: Decrypte snk file
       env:
@@ -28,8 +31,5 @@ jobs:
     - name: Create package
       run: dotnet pack source -c Release -o build /p:CI_VERSION=true
 
-    - name: Setup github nuget registry
-      run: dotnet nuget add source --username Doraku --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Doraku/index.json"
-
     - name: Publish package
-      run: dotnet nuget push build\*.nupkg --source "github"
+      run: dotnet nuget push build\*.nupkg
