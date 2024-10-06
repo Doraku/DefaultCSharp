@@ -17,6 +17,9 @@ jobs:
     - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
+        source-url: https://nuget.pkg.github.com/Doraku/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Decrypte snk file
       env:
@@ -27,4 +30,4 @@ jobs:
       run: dotnet pack source -c Release -o build /p:CI_VERSION=true
 
     - name: Publish package
-      run: dotnet nuget push build\*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/Doraku/index.json
+      run: dotnet nuget push build\*.nupkg
