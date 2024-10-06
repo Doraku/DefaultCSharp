@@ -8,18 +8,11 @@ jobs:
   release:
     runs-on: windows-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        ref: master
+    - uses: actions/checkout@v4
 
-    - name: Set up dotnet
-      uses: actions/setup-dotnet@v4
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
-        source-url: https://api.nuget.org/v3/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
       
     - name: Decrypte snk file
       env:
@@ -48,7 +41,7 @@ jobs:
       run: echo "" | Out-File documentation\NEXT_RELEASENOTES.txt -NoNewLine
 
     - name: Publish package
-      run: dotnet nuget push build\*.nupkg
+      run: dotnet nuget push build\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
     - name: Commit RELEASENOTES and documentation api
       if: "!contains(github.event.release.tag_name, '-')"
