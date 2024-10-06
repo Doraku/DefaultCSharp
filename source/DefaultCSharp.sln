@@ -20,10 +20,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".workflows", ".workflows", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{41EA789B-5501-41AE-BE8C-E79F2ABB0DB8}"
 	ProjectSection(SolutionItems) = preProject
-		..\.gitignore = ..\.gitignore
 		..\.github\FUNDING.yml = ..\.github\FUNDING.yml
 		..\LICENSE.md = ..\LICENSE.md
 		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{8ED2A266-F2EC-4CC0-AE90-CAFF2D88F412}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
 Global
@@ -43,6 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E8376EC9-2DB7-4760-967F-23B147818E85} = {DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}
 		{41EA789B-5501-41AE-BE8C-E79F2ABB0DB8} = {DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}
+		{8ED2A266-F2EC-4CC0-AE90-CAFF2D88F412} = {DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27D808C2-A73C-4319-BCE3-476CC40EEEAF}
