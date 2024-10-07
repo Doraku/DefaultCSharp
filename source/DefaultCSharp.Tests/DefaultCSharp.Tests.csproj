@@ -15,7 +15,6 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing" Version="1.1.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-    <PackageReference Include="NFluent" Version="3.0.4" />
     <PackageReference Include="xunit" Version="2.9.2" />
     
     <PackageReference Include="coverlet.msbuild" Version="6.0.2" PrivateAssets="all" />
