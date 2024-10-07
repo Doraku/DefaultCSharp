@@ -28,9 +28,9 @@
 
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(TEST)' != 'true'">
     <SignAssembly>True</SignAssembly>
-    <IncludeSymbols Condition="'$(CI_VERSION)' != 'true'">true</IncludeSymbols>
-    <SymbolPackageFormat Condition="'$(CI_VERSION)' != 'true'">snupkg</SymbolPackageFormat>
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <!--<IncludeSymbols Condition="'$(CI_VERSION)' != 'true'">true</IncludeSymbols>-->
+    <!--<SymbolPackageFormat Condition="'$(CI_VERSION)' != 'true'">snupkg</SymbolPackageFormat>-->
+    <!--<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>-->
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\ds.snk</AssemblyOriginatorKeyFile>
     <Version Condition="'$(CI_VERSION)' == 'true'">0-ci$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
   </PropertyGroup>
