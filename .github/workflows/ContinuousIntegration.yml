@@ -20,6 +20,11 @@ jobs:
         source-url: https://nuget.pkg.github.com/Doraku/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        
+    - name: Run tests
+      run: dotnet test source -c Release
+      env:
+        TEST: true
 
     - name: Decrypte snk file
       env:

@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefaultCSharp", "DefaultCSh
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution items", ".solution items", "{DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
 		..\documentation\NEXT_RELEASENOTES.txt = ..\documentation\NEXT_RELEASENOTES.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".workflows", ".workflows", "{E8376EC9-2DB7-4760-967F-23B147818E85}"
 	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\CodeCoverage.yml = ..\.github\workflows\CodeCoverage.yml
 		..\.github\workflows\ContinuousIntegration.yml = ..\.github\workflows\ContinuousIntegration.yml
 		..\.github\dependabot.yml = ..\.github\dependabot.yml
 		..\Release.bat = ..\Release.bat
@@ -30,6 +32,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{8ED2A266-F
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{97599EAB-2030-4264-9FB0-42ED4B3C7D09}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefaultCSharp.Tests", "DefaultCSharp.Tests\DefaultCSharp.Tests.csproj", "{50786398-08D1-4363-84DC-34308F99A084}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +46,10 @@ Global
 		{47B2731B-C8A5-4B86-AD5F-7C90FE27C9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47B2731B-C8A5-4B86-AD5F-7C90FE27C9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47B2731B-C8A5-4B86-AD5F-7C90FE27C9CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50786398-08D1-4363-84DC-34308F99A084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50786398-08D1-4363-84DC-34308F99A084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50786398-08D1-4363-84DC-34308F99A084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50786398-08D1-4363-84DC-34308F99A084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +58,7 @@ Global
 		{E8376EC9-2DB7-4760-967F-23B147818E85} = {DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}
 		{41EA789B-5501-41AE-BE8C-E79F2ABB0DB8} = {DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}
 		{8ED2A266-F2EC-4CC0-AE90-CAFF2D88F412} = {DE967B1A-9E29-4BEE-A0CE-029127F2E2DF}
+		{50786398-08D1-4363-84DC-34308F99A084} = {97599EAB-2030-4264-9FB0-42ED4B3C7D09}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27D808C2-A73C-4319-BCE3-476CC40EEEAF}

@@ -4,19 +4,10 @@
     
     <TargetFramework>netstandard2.0</TargetFramework>
     
-    <Authors>Paillat Laszlo</Authors>
     <Description>Editor configuration reusable between projects, totaly opinionated.</Description>
     
-    <PackageIcon>logo.png</PackageIcon>
-    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Doraku/DefaultCSharp</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>editorconfig</PackageTags>
-    
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/Doraku/DefaultCSharp.git</RepositoryUrl>
-    
     <DevelopmentDependency>true</DevelopmentDependency>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
     <NoDefaultExcludes>true</NoDefaultExcludes>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     
@@ -24,9 +15,6 @@
 
   <ItemGroup>
     
-    <None Include="..\..\image\logo.png" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
-
     <None Include="configuration\**\*" Pack="true" PackagePath="configuration" />
     <None Include="projects\**\*" Pack="true" PackagePath="projects" />
 
@@ -35,6 +23,8 @@
 
     <None Include="DefaultCSharp.targets" Pack="true" PackagePath="build\" />
     <None Include="DefaultCSharp.targets" Pack="true" PackagePath="buildCrossTargeting\" />
+    
+    <!--<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
     
   </ItemGroup>
 
@@ -48,30 +38,10 @@
     <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.12.7" />
     <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.12.7" />
     
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    
   </ItemGroup>
-
-  <PropertyGroup Condition="'$(LOCAL_VERSION)' == 'true'">
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\..\ds.snk</AssemblyOriginatorKeyFile>
-    <Version>0-local$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(TEST)' != 'true'">
-    <SignAssembly>True</SignAssembly>
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <AssemblyOriginatorKeyFile>..\..\ds.snk</AssemblyOriginatorKeyFile>
-    <Version Condition="'$(CI_VERSION)' == 'true'">0-ci$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
-  </PropertyGroup>
-
-  <Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
-    <ReadLinesFromFile File="../../documentation/NEXT_RELEASENOTES.txt">
-      <Output TaskParameter="Lines" ItemName="ReleaseNotesLines" />
-    </ReadLinesFromFile>
-    <PropertyGroup>
-      <PackageReleaseNotes>@(ReleaseNotesLines, '%0a')</PackageReleaseNotes>
-    </PropertyGroup>
-  </Target>
-
-  <Import Project="$(MSBuildThisFileDirectory)projects\DefaultCSharp.props"/>
 
 </Project>

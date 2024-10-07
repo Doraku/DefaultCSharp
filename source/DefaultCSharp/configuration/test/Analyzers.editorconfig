@@ -11,3 +11,6 @@ dotnet_diagnostic.CA2201.severity = none
 
 # SYSLIB1045: Convert to 'GeneratedRegexAttribute'.
 dotnet_diagnostic.SYSLIB1045.severity = none
+
+# xUnit1045: Avoid using TheoryData type arguments that might not be serializable
+dotnet_diagnostic.xUnit1045.severity = none
