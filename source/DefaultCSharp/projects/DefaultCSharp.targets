@@ -2,20 +2,10 @@
 
   <PropertyGroup>
 
-    <Version Condition="'$(LOCAL_VERSION)' == 'true'">0-local$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
-    <Version Condition="'$(CI_VERSION)' == 'true'">0-ci$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     
-    <SignAssembly Condition="'$(AssemblyOriginatorKeyFile)' != '' AND '$(Version)' != ''">True</SignAssembly>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
     
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(TEST)' != 'true'">
-
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-
-    <IncludeSymbols Condition="'$(CI_VERSION)' != 'true'">true</IncludeSymbols>
-    <SymbolPackageFormat Condition="'$(CI_VERSION)' != 'true'">snupkg</SymbolPackageFormat>
-
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(DefaultCSharpPackageIconFile)' != ''">
@@ -31,6 +21,18 @@
   <ItemGroup Condition="'$(DefaultCSharpPackageReadmeFile)' != ''">
     <None Include="$(DefaultCSharpPackageReadmeFile)" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
+
+  <Target Name="DefaultCSharpPreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec" Condition="'$(DefaultCSharpPackageReleaseNotesFile)' != ''">
+
+    <ReadLinesFromFile File="$(DefaultCSharpPackageReleaseNotesFile)">
+      <Output TaskParameter="Lines" ItemName="ReleaseNotesLines" />
+    </ReadLinesFromFile>
+
+    <PropertyGroup>
+      <PackageReleaseNotes>@(ReleaseNotesLines, '%0a')</PackageReleaseNotes>
+    </PropertyGroup>
+
+  </Target>
   
   <ItemGroup>
 
@@ -49,17 +51,5 @@
       <Visible Condition="'%(NuGetItemType)' == 'Compile' and '%(NuGetPackageId)' == 'DefaultCSharp'">false</Visible>
     </Compile>
   </ItemGroup>
-
-  <Target Name="DefaultCSharpPreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec" Condition="'$(DefaultCSharpPackageReleaseNotesFile)' != ''">
-    
-    <ReadLinesFromFile File="$(DefaultCSharpPackageReleaseNotesFile)">
-      <Output TaskParameter="Lines" ItemName="ReleaseNotesLines" />
-    </ReadLinesFromFile>
-    
-    <PropertyGroup>
-      <PackageReleaseNotes>@(ReleaseNotesLines, '%0a')</PackageReleaseNotes>
-    </PropertyGroup>
-    
-  </Target>
 
 </Project>

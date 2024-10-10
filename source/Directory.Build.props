@@ -8,9 +8,6 @@
     <PackageProjectUrl>https://github.com/Doraku/DefaultCSharp</PackageProjectUrl>
     <PackageTags>editorconfig</PackageTags>
 
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/Doraku/DefaultCSharp.git</RepositoryUrl>
-
     <DefaultCSharpPackageIconFile>$(MSBuildThisFileDirectory)..\image\logo.png</DefaultCSharpPackageIconFile>
     <DefaultCSharpPackageReadmeFile>$(MSBuildThisFileDirectory)..\README.md</DefaultCSharpPackageReadmeFile>
     <DefaultCSharpPackageReleaseNotesFile>$(MSBuildThisFileDirectory)../documentation/NEXT_RELEASENOTES.txt</DefaultCSharpPackageReleaseNotesFile>

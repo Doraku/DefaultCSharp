@@ -20,7 +20,7 @@ jobs:
       run: gpg --quiet --batch --yes --decrypt --passphrase="$env:SNK_KEY" --output ds.snk ds.snk.gpg
 
     - name: Create package
-      run: dotnet pack source -c Release -o build /p:Version=${{ github.event.release.tag_name }}
+      run: dotnet pack source -c Release -o build /p:Version=${{ github.event.release.tag_name }} /p:SignAssembly=true
 
     - name: Create RELEASE.txt
       run: |
