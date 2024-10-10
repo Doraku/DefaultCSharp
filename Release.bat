@@ -3,7 +3,7 @@
 DEL /q build
 dotnet clean source -c Release
 
-dotnet test source -c Release -r build -l trx
+dotnet test source -c Release -r build
 
 IF %ERRORLEVEL% GTR 0 GOTO :end
 
