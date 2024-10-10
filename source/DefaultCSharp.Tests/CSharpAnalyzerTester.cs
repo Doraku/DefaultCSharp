@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.Testing;
 
 namespace DefaultCSharp;
 
-public sealed class CSharpAnalyzerTest<TAnalyzer> : CSharpCodeFixTest<TAnalyzer, EmptyCodeFixProvider, DefaultVerifier>
+public sealed class CSharpAnalyzerTester<TAnalyzer> : CSharpCodeFixTest<TAnalyzer, EmptyCodeFixProvider, DefaultVerifier>
         where TAnalyzer : DiagnosticAnalyzer, new()
 {
     private readonly List<DiagnosticAnalyzer> _additionalDiagnosticAnalyzers = [];
@@ -15,21 +15,28 @@ public sealed class CSharpAnalyzerTest<TAnalyzer> : CSharpCodeFixTest<TAnalyzer,
 
     protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers() => [.. base.GetDiagnosticAnalyzers(), .. _additionalDiagnosticAnalyzers];
 
-    public CSharpAnalyzerTest<TAnalyzer> AddSource(string code)
+    public CSharpAnalyzerTester<TAnalyzer> AddEditorConfig(string filePath, string content)
     {
-        TestState.Sources.Add(code);
+        TestState.AnalyzerConfigFiles.Add((filePath, content));
 
         return this;
     }
 
-    public CSharpAnalyzerTest<TAnalyzer> AddAnalyzers(params DiagnosticAnalyzer[] analyzers)
+    public CSharpAnalyzerTester<TAnalyzer> AddSource(string filePath, string code)
+    {
+        TestState.Sources.Add((filePath, code));
+
+        return this;
+    }
+
+    public CSharpAnalyzerTester<TAnalyzer> AddAnalyzers(params DiagnosticAnalyzer[] analyzers)
     {
         _additionalDiagnosticAnalyzers.AddRange(analyzers);
 
         return this;
     }
 
-    public CSharpAnalyzerTest<TAnalyzer> AddExpectedDiagnostics(params DiagnosticResult[] diagnostics)
+    public CSharpAnalyzerTester<TAnalyzer> AddExpectedDiagnostics(params DiagnosticResult[] diagnostics)
     {
         TestState.ExpectedDiagnostics.AddRange(diagnostics);
 

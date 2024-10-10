@@ -3,23 +3,18 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
+using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace DefaultCSharp;
+namespace DefaultCSharp.Internal;
 
-public class AnalyzerLoaderBase
+internal class AnalyzerLoaderBase
 {
     private static readonly Lazy<string> _nuGetPackagesFolder = new(GetNuGetPackagesFolder, isThreadSafe: true);
-
-    protected static string NuGetPackagesFolder => _nuGetPackagesFolder.Value;
-
-    protected static Type FindType(
-        Lazy<Assembly> assembly,
-        string typeName) =>
-            assembly.Value.GetType(typeName) ?? throw new InvalidOperationException($"Could not locate type '{typeName}' from '{assembly.Value.GetName().Name}'");
 
     private static string GetNuGetPackagesFolder()
     {
         string result = Environment.GetEnvironmentVariable("NUGET_PACKAGES");
+
         if (result is null)
         {
             string homeFolder =
@@ -38,5 +33,14 @@ public class AnalyzerLoaderBase
         return result;
     }
 
-    protected static Assembly LoadAssembly(string assemblyPath) => AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath);
+    protected static Assembly LoadAssembly(params string[] paths) => AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine([_nuGetPackagesFolder.Value, .. paths]));
+
+    protected static Lazy<DiagnosticAnalyzer> CreateDiagnosticAnalyzer(Lazy<Assembly> assembly, string diagnosticAnalyzerTypeName)
+    {
+        Type diagnosticAnalyzerType = assembly.Value.GetType(diagnosticAnalyzerTypeName) ?? throw new InvalidOperationException($"Could not locate type '{diagnosticAnalyzerTypeName}' from '{assembly.Value.GetName().Name}'");
+
+        return new Lazy<DiagnosticAnalyzer>(
+            () => Activator.CreateInstance(diagnosticAnalyzerType) as DiagnosticAnalyzer ?? throw new InvalidOperationException($"Could not create instance of '{diagnosticAnalyzerType.FullName}'"),
+            true);
+    }
 }

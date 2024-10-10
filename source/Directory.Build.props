@@ -4,46 +4,25 @@
 
     <Authors>Paillat Laszlo</Authors>
 
-    <PackageIcon>logo.png</PackageIcon>
     <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Doraku/DefaultCSharp</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>editorconfig</PackageTags>
 
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Doraku/DefaultCSharp.git</RepositoryUrl>
+
+    <DefaultCSharpPackageIconFile>$(MSBuildThisFileDirectory)..\image\logo.png</DefaultCSharpPackageIconFile>
+    <DefaultCSharpPackageReadmeFile>$(MSBuildThisFileDirectory)..\README.md</DefaultCSharpPackageReadmeFile>
+    <DefaultCSharpPackageReleaseNotesFile>$(MSBuildThisFileDirectory)../documentation/NEXT_RELEASENOTES.txt</DefaultCSharpPackageReleaseNotesFile>
+
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\..\ds.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile Condition="'$(GITHUB_ACTIONS)' == 'true'">$(MSBuildThisFileDirectory)..\ds.snk</AssemblyOriginatorKeyFile>
     
 	</PropertyGroup>
 
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)..\image\logo.png" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="$(MSBuildThisFileDirectory)..\README.md" Pack="true" PackagePath="\" Visible="false" />
+    <PackageReference Include="Polyfill" Version="7.0.0" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
-
-  <PropertyGroup Condition="'$(LOCAL_VERSION)' == 'true'">
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\..\ds.snk</AssemblyOriginatorKeyFile>
-    <Version>0-local$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(TEST)' != 'true'">
-    <SignAssembly>True</SignAssembly>
-    <!--<IncludeSymbols Condition="'$(CI_VERSION)' != 'true'">true</IncludeSymbols>-->
-    <!--<SymbolPackageFormat Condition="'$(CI_VERSION)' != 'true'">snupkg</SymbolPackageFormat>-->
-    <!--<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>-->
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\ds.snk</AssemblyOriginatorKeyFile>
-    <Version Condition="'$(CI_VERSION)' == 'true'">0-ci$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
-  </PropertyGroup>
-  
-	<Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
-		<ReadLinesFromFile File="$(MSBuildThisFileDirectory)../documentation/NEXT_RELEASENOTES.txt">
-			<Output TaskParameter="Lines" ItemName="ReleaseNotesLines" />
-		</ReadLinesFromFile>
-		<PropertyGroup>
-			<PackageReleaseNotes>@(ReleaseNotesLines, '%0a')</PackageReleaseNotes>
-		</PropertyGroup>
-	</Target>
-
 
   <Import Project="$(MSBuildThisFileDirectory)DefaultCSharp\projects\DefaultCSharp.props" />
   <Import Project="$(MSBuildThisFileDirectory)DefaultCSharp\projects\DefaultCSharp.targets" />

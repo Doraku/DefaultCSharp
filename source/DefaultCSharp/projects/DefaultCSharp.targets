@@ -1,5 +1,37 @@
 <Project>
 
+  <PropertyGroup>
+
+    <Version Condition="'$(LOCAL_VERSION)' == 'true'">0-local$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
+    <Version Condition="'$(CI_VERSION)' == 'true'">0-ci$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
+    
+    <SignAssembly Condition="'$(AssemblyOriginatorKeyFile)' != '' AND '$(Version)' != ''">True</SignAssembly>
+    
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(TEST)' != 'true'">
+
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+    <IncludeSymbols Condition="'$(CI_VERSION)' != 'true'">true</IncludeSymbols>
+    <SymbolPackageFormat Condition="'$(CI_VERSION)' != 'true'">snupkg</SymbolPackageFormat>
+
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(DefaultCSharpPackageIconFile)' != ''">
+    <PackageIcon>$([System.IO.Path]::GetFileName('$(DefaultCSharpPackageIconFile)'))</PackageIcon>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(DefaultCSharpPackageIconFile)' != ''">
+    <None Include="$(DefaultCSharpPackageIconFile)" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(DefaultCSharpPackageReadmeFile)' != ''">
+    <PackageReadmeFile>$([System.IO.Path]::GetFileName('$(DefaultCSharpPackageReadmeFile)'))</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(DefaultCSharpPackageReadmeFile)' != ''">
+    <None Include="$(DefaultCSharpPackageReadmeFile)" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+  
   <ItemGroup>
 
     <EditorConfigFiles Include="$(MSBuildThisFileDirectory)..\configuration\*.editorconfig" />
@@ -9,5 +41,25 @@
        Include="$(MSBuildThisFileDirectory)..\configuration\test\*.editorconfig" />
 
   </ItemGroup>
+
+  <!-- fix for Polyfill transitive reference -->
+  <Import Project="$(MSBuildThisFileDirectory)Polyfill.targets" Condition="Exists('$(MSBuildThisFileDirectory)Polyfill.targets')"/>
+  <ItemGroup>
+    <Compile Update="@(Compile)">
+      <Visible Condition="'%(NuGetItemType)' == 'Compile' and '%(NuGetPackageId)' == 'DefaultCSharp'">false</Visible>
+    </Compile>
+  </ItemGroup>
+
+  <Target Name="DefaultCSharpPreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec" Condition="'$(DefaultCSharpPackageReleaseNotesFile)' != ''">
+    
+    <ReadLinesFromFile File="$(DefaultCSharpPackageReleaseNotesFile)">
+      <Output TaskParameter="Lines" ItemName="ReleaseNotesLines" />
+    </ReadLinesFromFile>
+    
+    <PropertyGroup>
+      <PackageReleaseNotes>@(ReleaseNotesLines, '%0a')</PackageReleaseNotes>
+    </PropertyGroup>
+    
+  </Target>
 
 </Project>
