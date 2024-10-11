@@ -13,11 +13,11 @@ internal class AnalyzerLoaderBase
 
     private static string GetNuGetPackagesFolder()
     {
-        string result = Environment.GetEnvironmentVariable("NUGET_PACKAGES");
+        string? result = Environment.GetEnvironmentVariable("NUGET_PACKAGES");
 
         if (result is null)
         {
-            string homeFolder =
+            string? homeFolder =
                 RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
                     ? Environment.GetEnvironmentVariable("USERPROFILE")
                     : Environment.GetEnvironmentVariable("HOME");

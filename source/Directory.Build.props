@@ -1,6 +1,8 @@
 <Project>
 
 	<PropertyGroup>
+    
+    <Nullable>enable</Nullable>
 
     <Authors>Paillat Laszlo</Authors>
 
