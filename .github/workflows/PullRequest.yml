@@ -1,0 +1,22 @@
+name: pull request
+
+on:
+  pull_request:
+    paths:
+      - 'source/**'
+
+jobs:
+  pull_request:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Build
+      run: dotnet build source -c Release -p:TreatWarningsAsErrors=true
+
+    - name: Run tests
+      run: dotnet test source -c Release --no-build
