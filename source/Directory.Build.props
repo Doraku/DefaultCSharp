@@ -20,7 +20,7 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Polyfill" Version="7.0.0" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="Polyfill" Version="7.2.0" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)DefaultCSharp\projects\DefaultCSharp.props" />
