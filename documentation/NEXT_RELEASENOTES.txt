@@ -1,0 +1,1 @@
+- ignored CA1515 for test projects
