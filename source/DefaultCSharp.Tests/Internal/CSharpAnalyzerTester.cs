@@ -4,10 +4,10 @@ using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Testing;
 
-namespace DefaultCSharp;
+namespace DefaultCSharp.Internal;
 
-public sealed class CSharpAnalyzerTester<TAnalyzer> : CSharpCodeFixTest<TAnalyzer, EmptyCodeFixProvider, DefaultVerifier>
-        where TAnalyzer : DiagnosticAnalyzer, new()
+internal sealed class CSharpAnalyzerTester<TAnalyzer> : CSharpCodeFixTest<TAnalyzer, EmptyCodeFixProvider, DefaultVerifier>
+    where TAnalyzer : DiagnosticAnalyzer, new()
 {
     private readonly List<DiagnosticAnalyzer> _additionalDiagnosticAnalyzers = [];
 

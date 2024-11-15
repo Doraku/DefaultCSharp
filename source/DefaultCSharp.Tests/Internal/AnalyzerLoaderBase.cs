@@ -33,7 +33,7 @@ internal class AnalyzerLoaderBase
         return result;
     }
 
-    protected static Assembly LoadAssembly(params string[] paths) => AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine([_nuGetPackagesFolder.Value, .. paths]));
+    protected static Assembly LoadAssembly(params ReadOnlySpan<string> paths) => AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine([_nuGetPackagesFolder.Value, .. paths]));
 
     protected static Lazy<DiagnosticAnalyzer> CreateDiagnosticAnalyzer(Lazy<Assembly> assembly, string diagnosticAnalyzerTypeName)
     {
