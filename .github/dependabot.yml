@@ -1,14 +1,21 @@
 version: 2
 updates:
+
   - package-ecosystem: "nuget"
     directory: "/source"
     schedule:
       interval: "weekly"
     groups:
+    
        Roslynator:
           applies-to: version-updates
           patterns:
             - "Roslynator*"
+            
+       Microsoft-CodeAnalysis-CSharp:
+          applies-to: version-updates
+          patterns:
+            - "Microsoft.CodeAnalysis.CSharp*"
       
   - package-ecosystem: "github-actions"
     directory: "/.github/workflows"
