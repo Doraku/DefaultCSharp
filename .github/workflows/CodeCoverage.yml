@@ -6,8 +6,7 @@ on:
       - master
     paths:
       - '.github/workflows/CodeCoverage.yml'
-      - 'source/DefaultCSharp/**'
-      - 'source/DefaultCSharp.Test/**'
+      - 'source/**'
 
 jobs:
   code_coverage:
