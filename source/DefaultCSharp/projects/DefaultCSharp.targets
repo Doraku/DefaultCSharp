@@ -3,10 +3,16 @@
   <PropertyGroup>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    
+
     <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
-    
+
   </PropertyGroup>
+
+  <ItemGroup>
+
+    <SourceRoot Condition="'$(GITHUB_ACTIONS)' == 'true'" Include="$(RepoRoot)" />
+
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(DefaultCSharpPackageIconFile)' != ''">
     <PackageIcon>$([System.IO.Path]::GetFileName('$(DefaultCSharpPackageIconFile)'))</PackageIcon>
@@ -33,7 +39,7 @@
     </PropertyGroup>
 
   </Target>
-  
+
   <ItemGroup>
 
     <EditorConfigFiles Include="$(MSBuildThisFileDirectory)..\configuration\*.editorconfig" />
