@@ -13,8 +13,8 @@ internal sealed class MicrosoftCodeAnalysisCSharpCodeStyleAnalyzers : AnalyzerLo
 
     private static Assembly LoadAssembly()
     {
-        LoadAssembly("microsoft.codeanalysis.csharp.codestyle", "4.11.0", "analyzers", "dotnet", "cs", "Microsoft.CodeAnalysis.CodeStyle.dll");
+        LoadAssembly("microsoft.codeanalysis.csharp.codestyle", "4.14.0", "analyzers", "dotnet", "cs", "Microsoft.CodeAnalysis.CodeStyle.dll");
 
-        return LoadAssembly("microsoft.codeanalysis.csharp.codestyle", "4.11.0", "analyzers", "dotnet", "cs", "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");
+        return LoadAssembly("microsoft.codeanalysis.csharp.codestyle", "4.14.0", "analyzers", "dotnet", "cs", "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");
     }
 }
