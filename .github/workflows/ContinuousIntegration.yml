@@ -18,15 +18,13 @@ jobs:
     - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '9.0.x'
-        source-url: https://nuget.pkg.github.com/Doraku/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         
-    - name: Run tests
-      run: dotnet test source -c Release
-      env:
-        TEST: true
+    - name: Build
+      run: dotnet build source -c Release -p:TreatWarningsAsErrors=true
 
+    - name: Run tests
+      run: dotnet test source -c Release --no-build
+      
     - name: Decrypte snk file
       env:
         SNK_KEY: ${{ secrets.SNK_KEY }}
@@ -35,5 +33,5 @@ jobs:
     - name: Create package
       run: dotnet pack source -c Release -o build /p:Version=0-ci$(date +'%Y%m%d%H%M%S') /p:SignAssembly=true
 
-    - name: Publish package
-      run: dotnet nuget push build\*.nupkg
+    - name: Publish packages
+      run: dotnet nuget push build\*.nupkg --api-key ${{ github.token }} --source https://nuget.pkg.github.com/Doraku/index.json
