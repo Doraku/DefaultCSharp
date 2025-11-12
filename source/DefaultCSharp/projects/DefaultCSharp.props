@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     
-    <LangVersion>13.0</LangVersion>
+    <LangVersion>14.0</LangVersion>
     
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>All</AnalysisMode>
-    <AnalysisLevel>9</AnalysisLevel>
+    <AnalysisLevel>10</AnalysisLevel>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     
