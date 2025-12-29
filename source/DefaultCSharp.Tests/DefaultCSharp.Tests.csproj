@@ -34,7 +34,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Update="Polyfill" Version="9.4.1" />
+    <PackageReference Update="Polyfill" Version="9.5.0" />
   </ItemGroup>
 
 </Project>
