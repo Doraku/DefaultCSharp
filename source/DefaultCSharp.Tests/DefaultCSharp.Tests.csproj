@@ -45,6 +45,7 @@
       <Using Namespace="System.IO" />
       <Code Type="Fragment" Language="cs">
         <![CDATA[
+          Directory.CreateDirectory("""$(BaseIntermediateOutputPath)""");
           File.WriteAllText(
               """$(BaseIntermediateOutputPath)Packages.g.cs""",
               """
