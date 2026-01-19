@@ -1,15 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Xunit;
 
-namespace DefaultCSharp.Supressors;
+namespace DefaultCSharp.Suppressors;
 
-public sealed class IDE0130SupressorShould
+public sealed class IDE0130SuppressorShould
 {
-    private readonly CSharpAnalyzerTester<IDE0130Supressor> _tester;
+    private readonly CSharpAnalyzerTester<IDE0130Suppressor> _tester;
 
-    public IDE0130SupressorShould()
+    public IDE0130SuppressorShould()
     {
-        _tester = new CSharpAnalyzerTester<IDE0130Supressor>()
+        _tester = new CSharpAnalyzerTester<IDE0130Suppressor>()
             .AddEditorConfig(
                 "/0/.editorconfig",
                 """
@@ -43,7 +43,30 @@ public sealed class IDE0130SupressorShould
                 }
                 """)
             .AddExpectedDiagnostics(
-                IDE0130Supressor.Rule.ToDiagnosticResult().WithLocation(0).WithIsSuppressed(true))
+                IDE0130Suppressor.Rule.ToDiagnosticResult().WithLocation(0).WithIsSuppressed(true))
+            .RunAsync();
+    }
+
+    [Fact]
+    public Task SuppressIDE0130WhenContainsCS14ExtensionsType()
+    {
+        return _tester
+            .AddSource(
+                "/0/Test/Test.cs",
+                /* lang=c#-test */ """
+                namespace {|#0:System|};
+
+                internal static class StringExtensions
+                {
+                    extension(string value)
+                    {
+                        public void Dummy()
+                        { }
+                    }
+                }
+                """)
+            .AddExpectedDiagnostics(
+                IDE0130Suppressor.Rule.ToDiagnosticResult().WithLocation(0).WithIsSuppressed(true))
             .RunAsync();
     }
 
@@ -63,7 +86,7 @@ public sealed class IDE0130SupressorShould
                 }
                 """)
             .AddExpectedDiagnostics(
-                IDE0130Supressor.Rule.ToDiagnosticResult().WithLocation(0))
+                IDE0130Suppressor.Rule.ToDiagnosticResult().WithLocation(0))
             .RunAsync();
     }
 }

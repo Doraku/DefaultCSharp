@@ -16,11 +16,13 @@
 
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\..\ds.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile Condition="'$(GITHUB_ACTIONS)' == 'true'">$(MSBuildThisFileDirectory)..\ds.snk</AssemblyOriginatorKeyFile>
+
+    <MicrosoftCodeAnalysisCSharpVersion>5.0.0</MicrosoftCodeAnalysisCSharpVersion>
     
 	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Polyfill" Version="9.7.1" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="Polyfill" Version="9.7.3" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)DefaultCSharp\projects\DefaultCSharp.props" />

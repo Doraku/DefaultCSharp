@@ -16,36 +16,34 @@
 
   <ItemGroup>
     
-    <None Include="configuration\**\*" Pack="true" PackagePath="configuration" />
-    <None Include="projects\**\*" Pack="true" PackagePath="projects" />
+    <None Include="configuration/**/*" Pack="true" PackagePath="configuration" />
+    <None Include="projects/**/*" Pack="true" PackagePath="projects" />
 
-    <None Include="DefaultCSharp.props" Pack="true" PackagePath="build\" />
-    <None Include="DefaultCSharp.props" Pack="true" PackagePath="buildCrossTargeting\" />
+    <None Include="DefaultCSharp.props" Pack="true" PackagePath="build" />
+    <None Include="DefaultCSharp.props" Pack="true" PackagePath="buildCrossTargeting" />
 
-    <None Include="DefaultCSharp.targets" Pack="true" PackagePath="build\" />
-    <None Include="DefaultCSharp.targets" Pack="true" PackagePath="buildCrossTargeting\" />
+    <None Include="DefaultCSharp.targets" Pack="true" PackagePath="build" />
+    <None Include="DefaultCSharp.targets" Pack="true" PackagePath="buildCrossTargeting" />
+    
+    <Compile Update="contentFiles/**/*" Pack="true" PackagePath="/" />
 
     <!-- fix for Polyfill transitive reference -->
-    <None Include="$(PkgPolyfill)\build\Polyfill.targets" Pack="true" PackagePath="projects" Visible="false" />
-    <Compile Update="$(PkgPolyfill)\contentFiles\**\*" Pack="true" PackagePath="contentFiles\cs\netstandard2.0\Polyfill\" Visible="false" />
+    <None Include="$(PkgPolyfill)/build/Polyfill.targets" Pack="true" PackagePath="projects" Visible="false" />
+    <Compile Update="$(PkgPolyfill)/contentFiles/**/*" Pack="true" PackagePath="contentFiles/cs/netstandard2.0/Polyfill" Visible="false" />
     
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)/$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     
   </ItemGroup>
 
   <ItemGroup>
 
-
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.101">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisCSharpVersion)" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.102" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.102" PrivateAssets="All" />
+    
     <PackageReference Include="Roslynator.Analyzers" Version="4.15.0" />
     <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.15.0" />
-    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.15.0" />
-    
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.15.0"/>
     
   </ItemGroup>
 
