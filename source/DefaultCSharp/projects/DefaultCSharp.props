@@ -10,6 +10,8 @@
     <AnalysisLevel>10</AnalysisLevel>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+
+    <PolyArgumentExceptions>true</PolyArgumentExceptions>
     
   </PropertyGroup>
 
