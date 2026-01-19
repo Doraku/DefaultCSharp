@@ -7,6 +7,8 @@ on:
 jobs:
   release:
     runs-on: windows-latest
+    permissions:
+      id-token: 'write'
     steps:
     - uses: actions/checkout@v6
 
@@ -44,7 +46,7 @@ jobs:
       uses: NuGet/login@v1
       id: login
       with:
-        user: Doraku
+        user: default-bot
     
     - name: Publish package
       run: dotnet nuget push build\*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
