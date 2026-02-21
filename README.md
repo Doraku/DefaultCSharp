@@ -5,7 +5,7 @@ The purpose of this package is to share my own editor configuration easily acros
 
 [![NuGet](https://img.shields.io/nuget/v/DefaultCSharp.svg)](https://www.nuget.org/packages/DefaultCSharp)
 [![preview package](https://img.shields.io/badge/preview-package-blue?style=flat&logo=github)](https://github.com/Doraku/DefaultCSharp/pkgs/nuget/DefaultCSharp)
-![continuous integration status](https://github.com/doraku/DefaultCSharp/workflows/continuous%20integration/badge.svg)
+[![Continuous Integration](https://github.com/Doraku/DefaultCSharp/actions/workflows/ContinuousIntegration.yml/badge.svg)](https://github.com/Doraku/DefaultCSharp/actions/workflows/ContinuousIntegration.yml)
 [![Coverage Status](https://coveralls.io/repos/github/Doraku/DefaultCSharp/badge.svg?branch=master)](https://coveralls.io/github/Doraku/DefaultCSharp?branch=master)
 
 ## Dependencies
