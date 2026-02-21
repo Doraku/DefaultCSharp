@@ -50,9 +50,6 @@
 
   </ItemGroup>
 
-  <!-- fix for Polyfill transitive reference -->
-  <Import Project="$(MSBuildThisFileDirectory)Polyfill.targets" Condition="Exists('$(MSBuildThisFileDirectory)Polyfill.targets')"/>
-
   <ItemGroup>
     <Compile Update="@(Compile)">
       <Visible Condition="'%(NuGetItemType)' == 'Compile' and '%(NuGetPackageId)' == 'DefaultCSharp'">false</Visible>
