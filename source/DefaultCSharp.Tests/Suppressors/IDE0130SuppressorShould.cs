@@ -44,7 +44,7 @@ public sealed class IDE0130SuppressorShould
                 """)
             .AddExpectedDiagnostics(
                 IDE0130Suppressor.Rule.ToDiagnosticResult().WithLocation(0).WithIsSuppressed(true))
-            .RunAsync();
+            .RunAsync(TestContext.Current.CancellationToken);
     }
 
     [Fact]
@@ -67,7 +67,7 @@ public sealed class IDE0130SuppressorShould
                 """)
             .AddExpectedDiagnostics(
                 IDE0130Suppressor.Rule.ToDiagnosticResult().WithLocation(0).WithIsSuppressed(true))
-            .RunAsync();
+            .RunAsync(TestContext.Current.CancellationToken);
     }
 
     [Fact]
@@ -87,6 +87,6 @@ public sealed class IDE0130SuppressorShould
                 """)
             .AddExpectedDiagnostics(
                 IDE0130Suppressor.Rule.ToDiagnosticResult().WithLocation(0))
-            .RunAsync();
+            .RunAsync(TestContext.Current.CancellationToken);
     }
 }
