@@ -10,7 +10,6 @@ The purpose of this package is to share my own editor configuration easily acros
 
 ## Dependencies
 Relies on these awesome projects:
-- [Coverlet](https://github.com/coverlet-coverage/coverlet)
 - [Polyfill](https://github.com/SimonCropp/Polyfill)
 - [Roslynator](https://github.com/JosefPihrt/Roslynator)
 - [XUnit](https://github.com/xunit/xunit)
