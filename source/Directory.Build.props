@@ -1,7 +1,7 @@
 <Project>
 
-	<PropertyGroup>
-    
+  <PropertyGroup>
+
     <Nullable>enable</Nullable>
 
     <Authors>Paillat Laszlo</Authors>
@@ -18,8 +18,8 @@
     <AssemblyOriginatorKeyFile Condition="'$(GITHUB_ACTIONS)' == 'true'">$(MSBuildThisFileDirectory)..\ds.snk</AssemblyOriginatorKeyFile>
 
     <MicrosoftCodeAnalysisCSharpVersion>5.9.0</MicrosoftCodeAnalysisCSharpVersion>
-    
-	</PropertyGroup>
+
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Polyfill" Version="11.4.3" PrivateAssets="all" />
@@ -27,5 +27,5 @@
 
   <Import Project="$(MSBuildThisFileDirectory)DefaultCSharp\projects\DefaultCSharp.props" />
   <Import Project="$(MSBuildThisFileDirectory)DefaultCSharp\projects\DefaultCSharp.targets" />
-  
+
 </Project>
