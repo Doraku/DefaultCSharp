@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" InitialTargets="GeneratePackagesFile">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 
@@ -20,49 +20,23 @@
 
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzer.Testing" Version="1.1.4" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing" Version="1.1.4" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeStyle" Version="$(MicrosoftCodeAnalysisCSharpVersion)" GeneratePathProperty="true" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(MicrosoftCodeAnalysisCSharpVersion)" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.12.0" />
     <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.12.0" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
     <PackageReference Include="xunit.v3" Version="4.0.3" />
 
-    <PackageDownload Include="Microsoft.CodeAnalysis.CSharp.CodeStyle" Version="[$(MicrosoftCodeAnalysisCSharpVersion)]" />
+  </ItemGroup>
 
+  <ItemGroup>
+    <None Include="$(PkgMicrosoft_CodeAnalysis_CSharp_CodeStyle)/analyzers/dotnet/cs/**/*" CopyToOutputDirectory="Always" Visible="false">
+      <Link>Microsoft.CodeAnalysis.CSharp.CodeStyle/%(RecursiveDir)/%(FileName)%(Extension)</Link>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DefaultCSharp\DefaultCSharp.csproj" />
   </ItemGroup>
-
-  <UsingTask TaskName="GeneratePackages" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-    <ParameterGroup />
-    <Task>
-      <Using Namespace="System" />
-      <Using Namespace="System.IO" />
-      <Code Type="Fragment" Language="cs">
-        <![CDATA[
-          Directory.CreateDirectory("""$(BaseIntermediateOutputPath)""");
-          File.WriteAllText(
-              """$(BaseIntermediateOutputPath)Packages.g.cs""",
-              """
-              namespace DefaultCSharp.Internal;
-              
-              internal static class Packages
-              {
-                  public const string MicrosoftCodeAnalysisCSharpVersion = "$(MicrosoftCodeAnalysisCSharpVersion)";
-              }
-              """);
-        ]]>
-      </Code>
-    </Task>
-  </UsingTask>
-
-  <ItemGroup>
-    <Compile Include="$(BaseIntermediateOutputPath)Packages.g.cs" Condition="Exists('$(BaseIntermediateOutputPath)Packages.g.cs')" Visible="false" />
-  </ItemGroup>
-
-  <Target Name="GeneratePackagesFile">
-    <GeneratePackages />
-  </Target>
 
 </Project>

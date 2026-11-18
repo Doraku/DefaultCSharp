@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -9,31 +8,14 @@ namespace DefaultCSharp.Internal;
 
 internal class AnalyzerLoaderBase
 {
-    private static readonly Lazy<string> _nuGetPackagesFolder = new(GetNuGetPackagesFolder, isThreadSafe: true);
+    private static readonly Lazy<string> _baseDirectory = new(GetBaseDirectory, isThreadSafe: true);
 
-    private static string GetNuGetPackagesFolder()
+    private static string GetBaseDirectory()
     {
-        string? result = Environment.GetEnvironmentVariable("NUGET_PACKAGES");
-
-        if (result is null)
-        {
-            string? homeFolder =
-                RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                    ? Environment.GetEnvironmentVariable("USERPROFILE")
-                    : Environment.GetEnvironmentVariable("HOME");
-
-            result = Path.Combine(homeFolder ?? throw new InvalidOperationException("Could not determine home folder"), ".nuget", "packages");
-        }
-
-        if (!Directory.Exists(result))
-        {
-            throw new InvalidOperationException($"NuGet package cache folder '{result}' does not exist");
-        }
-
-        return result;
+        return Path.GetDirectoryName(typeof(AnalyzerLoaderBase).Assembly.Location) ?? Environment.CurrentDirectory;
     }
 
-    protected static Assembly LoadAssembly(params ReadOnlySpan<string> paths) => AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine([_nuGetPackagesFolder.Value, .. paths]));
+    protected static Assembly LoadAssembly(params ReadOnlySpan<string> paths) => AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine([_baseDirectory.Value, .. paths]));
 
     protected static Lazy<DiagnosticAnalyzer> CreateDiagnosticAnalyzer(Lazy<Assembly> assembly, string diagnosticAnalyzerTypeName)
     {

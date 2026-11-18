@@ -3,6 +3,7 @@
   <PropertyGroup>
 
     <Nullable>enable</Nullable>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
 
     <Authors>Paillat Laszlo</Authors>
 

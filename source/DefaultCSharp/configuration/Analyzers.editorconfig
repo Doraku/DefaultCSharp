@@ -8,6 +8,9 @@ dotnet_analyzer_diagnostic.severity = warning
 # CA1000: Do not declare static members on generic types
 dotnet_diagnostic.CA1000.severity = none
 
+# CA1003: Use generic event handler instances
+dotnet_diagnostic.CA1003.severity = none
+
 # CA1008: Enums should have zero value
 dotnet_diagnostic.CA1008.severity = none
 

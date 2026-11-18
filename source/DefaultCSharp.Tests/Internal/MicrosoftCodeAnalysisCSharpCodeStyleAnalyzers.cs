@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace DefaultCSharp.Internal;
@@ -14,8 +13,8 @@ internal sealed class MicrosoftCodeAnalysisCSharpCodeStyleAnalyzers : AnalyzerLo
 
     private static Assembly LoadAssembly()
     {
-        LoadAssembly("microsoft.codeanalysis.csharp.codestyle", Packages.MicrosoftCodeAnalysisCSharpVersion, "analyzers", "dotnet", "cs", "Microsoft.CodeAnalysis.CodeStyle.dll");
+        LoadAssembly("Microsoft.CodeAnalysis.CSharp.CodeStyle", "Microsoft.CodeAnalysis.CodeStyle.dll");
 
-        return LoadAssembly("microsoft.codeanalysis.csharp.codestyle", Packages.MicrosoftCodeAnalysisCSharpVersion, "analyzers", "dotnet", "cs", "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");
+        return LoadAssembly("Microsoft.CodeAnalysis.CSharp.CodeStyle", "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");
     }
 }
